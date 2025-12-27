@@ -1,0 +1,7 @@
+{
+  "appName": "kyvex-api-proxy",
+  "buildCommand": "npm install",
+  "startCommand": "npm start",
+  "framework": "express"
+}
+

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> - Kyvex API</title>
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+    <%- include('../partials/header', { username: username }) %>
+    <div class="container">
+        <%- include('../partials/sidebar', { currentPage: currentPage }) %>
+        <main class="main-content">
+    <div class="page-header">
+        <h1>Analytics</h1>
+        <p>Detailed usage statistics and insights</p>
+    </div>
+
+    <% if (typeof error !== 'undefined' && error) { %>
+        <div class="alert alert-error"><%= error %></div>
+    <% } %>
+
+    <div class="card">
+        <h2>Usage Over Time</h2>
+        <canvas id="usageChart" width="400" height="200"></canvas>
+    </div>
+
+    <div class="card">
+        <h2>Model Usage</h2>
+        <canvas id="modelChart" width="400" height="200"></canvas>
+    </div>
+
+    <div class="card">
+        <h2>Top API Keys</h2>
+        <div id="topKeysTable"></div>
+    </div>
+
+    <div class="card">
+        <h2>Error Statistics</h2>
+        <div id="errorStats"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Load and display usage chart
+        async function loadUsageChart() {
+            try {
+                const response = await fetch('/admin/api/stats/usage?days=30');
+                const data = await response.json();
+                
+                const ctx = document.getElementById('usageChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: data.map(d => d._id),
+                        datasets: [{
+                            label: 'Requests',
+                            data: data.map(d => d.count),
+                            borderColor: '#667eea',
+                            backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error loading usage chart:', error);
+            }
+        }
+
+        // Load and display model chart
+        async function loadModelChart() {
+            try {
+                const response = await fetch('/admin/api/stats/models?limit=10');
+                const data = await response.json();
+                
+                const ctx = document.getElementById('modelChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: data.map(d => d._id),
+                        datasets: [{
+                            label: 'Usage Count',
+                            data: data.map(d => d.count),
+                            backgroundColor: '#667eea'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error loading model chart:', error);
+            }
+        }
+
+        // Load top keys
+        async function loadTopKeys() {
+            try {
+                const response = await fetch('/admin/api/stats/top-keys?limit=10');
+                const data = await response.json();
+                
+                let html = '<table><thead><tr><th>Name</th><th>Requests</th><th>Avg Response Time</th><th>Errors</th></tr></thead><tbody>';
+                data.forEach(key => {
+                    html += `<tr>
+                        <td>${key.name || 'Unnamed'}</td>
+                        <td>${key.count}</td>
+                        <td>${key.avgResponseTime.toFixed(0)}ms</td>
+                        <td>${key.errors}</td>
+                    </tr>`;
+                });
+                html += '</tbody></table>';
+                
+                document.getElementById('topKeysTable').innerHTML = html;
+            } catch (error) {
+                console.error('Error loading top keys:', error);
+            }
+        }
+
+        // Load error stats
+        async function loadErrorStats() {
+            try {
+                const response = await fetch('/admin/api/stats/errors?days=7');
+                const data = await response.json();
+                
+                let html = `<p><strong>Total Errors:</strong> ${data.totalErrors}</p>`;
+                html += '<table><thead><tr><th>Status Code</th><th>Count</th></tr></thead><tbody>';
+                data.byStatusCode.forEach(stat => {
+                    html += `<tr><td>${stat._id}</td><td>${stat.count}</td></tr>`;
+                });
+                html += '</tbody></table>';
+                
+                document.getElementById('errorStats').innerHTML = html;
+            } catch (error) {
+                console.error('Error loading error stats:', error);
+            }
+        }
+
+        // Load all charts on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadUsageChart();
+            loadModelChart();
+            loadTopKeys();
+            loadErrorStats();
+        });
+    </script>
+        </main>
+    </div>
+    <script src="/js/admin.js"></script>
+</body>
+</html>

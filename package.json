@@ -1,0 +1,52 @@
+{
+  "name": "kyvex-api-proxy",
+  "version": "1.0.0",
+  "description": "External API proxy for Kyvex.ai with OpenAI compatibility",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "keepalive": "node -e \"setInterval(() => require('axios').get(process.env.APP_URL + '/health').catch(() => {}), 300000)\""
+  },
+  "keywords": [
+    "api",
+    "proxy",
+    "kyvex",
+    "openai",
+    "ai"
+  ],
+  "author": "Aakash Singh",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:aakash688/reverse-kyvex.ai.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aakash688/reverse-kyvex.ai/issues"
+  },
+  "homepage": "https://github.com/aakash688/reverse-kyvex.ai#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^8.0.3",
+    "axios": "^1.6.2",
+    "dotenv": "^16.3.1",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.9",
+    "express-session": "^1.17.3",
+    "connect-mongo": "^5.1.0",
+    "express-rate-limit": "^7.1.5",
+    "uuid": "^9.0.1",
+    "bcrypt": "^5.1.1",
+    "express-validator": "^7.0.1",
+    "helmet": "^7.1.0",
+    "express-mongo-sanitize": "^2.2.0",
+    "date-fns": "^3.0.6",
+    "@resend/node": "^2.0.0",
+    "nodemailer": "^6.9.7",
+    "form-data": "^4.0.0"
+  },
+  "devDependencies": {}
+}
+
