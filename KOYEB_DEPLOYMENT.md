@@ -6,12 +6,13 @@ Complete step-by-step guide to deploy on Koyeb free tier.
 
 ## ✅ Why Koyeb?
 
-- ✅ **No credit card required**
+- ⚠️ **Credit card required** (temporary $1 hold, refunded immediately)
 - ✅ Easy GitHub integration
 - ✅ Auto-deploy from Git
 - ✅ Free PostgreSQL (if needed)
 - ✅ Custom domains
 - ✅ Works with your current codebase
+- ✅ **Don't charge for free tier** (card is for verification)
 
 **Limitation:** May sleep after inactivity (but wakes on first request)
 
@@ -24,7 +25,11 @@ Complete step-by-step guide to deploy on Koyeb free tier.
 3. Click **"Sign up with GitHub"**
 4. Authorize Koyeb to access your GitHub
 5. Complete signup
-6. **No credit card required!** ✅
+6. **Add credit card** (required for verification)
+   - Temporary $1 hold will be placed
+   - **Refunded immediately**
+   - **No charges for free tier**
+   - Card is for verification/abuse prevention only
 
 ---
 

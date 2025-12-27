@@ -11,15 +11,16 @@ Both **Render** and **Fly.io** now require credit card verification, even for fr
 
 ---
 
-## ✅ Best Option: Koyeb (No Credit Card Required)
+## ✅ Best Option: Koyeb
 
 **Recommended for you because:**
-- ✅ **No credit card required**
 - ✅ Easy GitHub integration
 - ✅ Auto-deploy from Git
 - ✅ No request limits
 - ✅ Works with your current codebase
 - ✅ Free tier available
+- ⚠️ **Credit card required** (temporary $1 hold, refunded immediately)
+- ✅ **Don't charge for free tier** (card is for verification)
 
 **See:** `KOYEB_DEPLOYMENT.md` for complete step-by-step guide
 
@@ -79,7 +80,7 @@ If you're comfortable providing a card:
 
 | Platform | Credit Card? | Free Tier | Always On? | Request Limits |
 |----------|--------------|-----------|------------|----------------|
-| **Koyeb** | ❌ **No** | ✅ Yes | ⚠️ Sleeps* | No limits |
+| **Koyeb** | ⚠️ Required ($1 hold, refunded) | ✅ Yes | ⚠️ Sleeps* | No limits |
 | **Render** | ⚠️ Required | ✅ Yes | ⚠️ Sleeps* | No limits |
 | **Fly.io** | ⚠️ Required | ✅ Yes | ✅ Yes | Generous |
 
@@ -89,13 +90,26 @@ If you're comfortable providing a card:
 
 ## 🎯 My Recommendation
 
-**Use Koyeb** because:
-1. ✅ No credit card required
-2. ✅ Easy deployment
-3. ✅ No request limits
-4. ✅ Complete guide ready (`KOYEB_DEPLOYMENT.md`)
+**All platforms require credit card for verification**, but they **don't charge for free tier**:
 
-**Or** use Render/Fly.io if you're okay with card verification (they won't charge).
+### Option 1: Koyeb (Recommended)
+- ✅ Easiest deployment
+- ✅ Best GitHub integration
+- ✅ $1 temporary hold (refunded immediately)
+- ✅ No charges for free tier
+
+### Option 2: Render
+- ✅ Good free tier
+- ✅ Easy to use
+- ✅ No charges for free tier
+
+### Option 3: Fly.io
+- ✅ Always on (no sleep)
+- ✅ Generous free tier
+- ✅ Global edge network
+- ✅ No charges for free tier
+
+**All are safe** - they use cards for verification but don't charge free tier usage.
 
 ---
 
