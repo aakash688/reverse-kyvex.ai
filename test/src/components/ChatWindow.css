@@ -1,0 +1,54 @@
+.chat-window {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: #343541;
+}
+
+.chat-window.empty {
+  justify-content: center;
+  align-items: center;
+}
+
+.empty-state {
+  text-align: center;
+  color: #8e8ea0;
+}
+
+.empty-state h2 {
+  color: #ececf1;
+  margin-bottom: 12px;
+  font-size: 24px;
+}
+
+.empty-state p {
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.empty-state .hint {
+  font-size: 14px;
+  margin-top: 16px;
+}
+
+.chat-header {
+  padding: 16px;
+  background-color: #40414f;
+  border-bottom: 1px solid #565869;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-header h3 {
+  color: #ececf1;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.message-count {
+  color: #8e8ea0;
+  font-size: 12px;
+}
+

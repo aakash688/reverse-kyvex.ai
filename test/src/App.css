@@ -1,0 +1,13 @@
+.app {
+  display: flex;
+  height: 100vh;
+  background-color: #343541;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+

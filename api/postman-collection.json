@@ -1,0 +1,183 @@
+{
+  "info": {
+    "name": "Kyvex API",
+    "description": "API collection for testing Kyvex API endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All Models",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer kyvex_AXtXdyTov2IHU5CNF1kq1NfHEr2i4X3Y",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "https://kyvex-api.proaiapirev1.workers.dev/v1/models",
+          "protocol": "https",
+          "host": ["kyvex-api", "proaiapirev1", "workers", "dev"],
+          "path": ["v1", "models"]
+        },
+        "description": "Get all available AI models from Kyvex"
+      },
+      "response": []
+    },
+    {
+      "name": "Chat Completion - Streaming",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer kyvex_AXtXdyTov2IHU5CNF1kq1NfHEr2i4X3Y",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"model\": \"gpt-4\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Hello, how are you?\"\n    }\n  ],\n  \"stream\": true,\n  \"conversation_id\": \"test-conversation-123\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://kyvex-api.proaiapirev1.workers.dev/v1/chat/completions",
+          "protocol": "https",
+          "host": ["kyvex-api", "proaiapirev1", "workers", "dev"],
+          "path": ["v1", "chat", "completions"]
+        },
+        "description": "Chat completion with streaming response (SSE format)"
+      },
+      "response": []
+    },
+    {
+      "name": "Chat Completion - Non-Streaming",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer kyvex_AXtXdyTov2IHU5CNF1kq1NfHEr2i4X3Y",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"model\": \"gpt-4\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"What is 2+2?\"\n    }\n  ],\n  \"stream\": false,\n  \"conversation_id\": \"test-conversation-456\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://kyvex-api.proaiapirev1.workers.dev/v1/chat/completions",
+          "protocol": "https",
+          "host": ["kyvex-api", "proaiapirev1", "workers", "dev"],
+          "path": ["v1", "chat", "completions"]
+        },
+        "description": "Chat completion with complete JSON response"
+      },
+      "response": []
+    },
+    {
+      "name": "Multi-Turn Conversation - Message 1",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer kyvex_AXtXdyTov2IHU5CNF1kq1NfHEr2i4X3Y",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"model\": \"gpt-4\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"My name is John\"\n    }\n  ],\n  \"stream\": false,\n  \"conversation_id\": \"john-conversation-001\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://kyvex-api.proaiapirev1.workers.dev/v1/chat/completions",
+          "protocol": "https",
+          "host": ["kyvex-api", "proaiapirev1", "workers", "dev"],
+          "path": ["v1", "chat", "completions"]
+        },
+        "description": "First message in a conversation"
+      },
+      "response": []
+    },
+    {
+      "name": "Multi-Turn Conversation - Message 2",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer kyvex_AXtXdyTov2IHU5CNF1kq1NfHEr2i4X3Y",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"model\": \"gpt-4\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"What is my name?\"\n    }\n  ],\n  \"stream\": false,\n  \"conversation_id\": \"john-conversation-001\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://kyvex-api.proaiapirev1.workers.dev/v1/chat/completions",
+          "protocol": "https",
+          "host": ["kyvex-api", "proaiapirev1", "workers", "dev"],
+          "path": ["v1", "chat", "completions"]
+        },
+        "description": "Follow-up message using same conversation_id - AI should remember the name"
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "api_key",
+      "value": "kyvex_AXtXdyTov2IHU5CNF1kq1NfHEr2i4X3Y",
+      "type": "string"
+    },
+    {
+      "key": "base_url",
+      "value": "https://kyvex-api.proaiapirev1.workers.dev",
+      "type": "string"
+    }
+  ]
+}
+

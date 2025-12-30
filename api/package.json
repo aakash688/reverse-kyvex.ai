@@ -1,0 +1,26 @@
+{
+  "name": "kyvex-api",
+  "version": "1.0.0",
+  "description": "Kyvex API Proxy - OpenAI-compatible API for kyvex.ai",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "create-admin": "node scripts/create-admin.js"
+  },
+  "keywords": [
+    "kyvex",
+    "api",
+    "proxy",
+    "cloudflare-workers"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@cloudflare/workers-types": "^4.20241106.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.54.0"
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "info": {
+    "name": "Kyvex API",
+    "description": "Collection for testing Kyvex API endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://kyvex-api.proaiapirev1.workers.dev",
+      "type": "string"
+    },
+    {
+      "key": "api_key",
+      "value": "kyvex_8f57308ca01e5ee842e724fda144b510fc90a3afd7fc18bdb3e867181c7b1217",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": ["{{base_url}}"],
+          "path": ["health"]
+        },
+        "description": "Check if API is running"
+      },
+      "response": []
+    },
+    {
+      "name": "List Models",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{api_key}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/v1/models",
+          "host": ["{{base_url}}"],
+          "path": ["v1", "models"]
+        },
+        "description": "Get list of available AI models"
+      },
+      "response": []
+    },
+    {
+      "name": "Chat - Non-Streaming",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{api_key}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"model\": \"claude-sonnet-4.5\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Hello! How are you?\"\n    }\n  ],\n  \"stream\": false\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/v1/chat/completions",
+          "host": ["{{base_url}}"],
+          "path": ["v1", "chat", "completions"]
+        },
+        "description": "Send a chat message without streaming"
+      },
+      "response": []
+    },
+    {
+      "name": "Chat - Streaming (New Chat)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{api_key}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"model\": \"claude-sonnet-4.5\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Hi, tell me a joke\"\n    }\n  ],\n  \"stream\": true\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/v1/chat/completions",
+          "host": ["{{base_url}}"],
+          "path": ["v1", "chat", "completions"]
+        },
+        "description": "Send a chat message with streaming response (new conversation)"
+      },
+      "response": []
+    },
+    {
+      "name": "Chat - Streaming (Continue)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{api_key}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"model\": \"claude-sonnet-4.5\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Hi\"\n    },\n    {\n      \"role\": \"assistant\",\n      \"content\": \"Hello! How can I help you?\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"What's 2+2?\"\n    }\n  ],\n  \"stream\": true,\n  \"thread_id\": \"your-thread-id-here\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/v1/chat/completions",
+          "host": ["{{base_url}}"],
+          "path": ["v1", "chat", "completions"]
+        },
+        "description": "Continue a conversation with thread context"
+      },
+      "response": []
+    }
+  ]
+}
+
