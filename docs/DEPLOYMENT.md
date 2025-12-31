@@ -348,3 +348,4 @@ wrangler pages deploy dist
 - **Supabase Docs**: https://supabase.com/docs
 - **Wrangler CLI**: https://developers.cloudflare.com/workers/wrangler/
 
+

@@ -276,3 +276,4 @@ For issues, questions, or contributions, please open an issue on GitHub.
 
 **Made with ❤️ using Cloudflare Workers and Supabase**
 
+
